@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GSO NOTÍCIAS - Ative as notificações</title>
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "c2f393f8-e2f1-492c-940c-c95fc34266d7",
+    });
+    OneSignal.User.PushSubscription.addEventListener("change", function(e){
+      if(e.current.optedIn){
+        setTimeout(function(){
+          window.location.href = "https://gabrielsantosooficial.blogspot.com/?m=1";
+        }, 1500);
+      }
+    });
+  });
+</script>
+<style>
+  body{font-family:Arial,sans-serif;background:#0f172a;color:#fff;display:flex;justify-content:center;align-items:center;min-height:100vh;margin:0;padding:20px;text-align:center}
+  .card{background:#1e293b;padding:30px;border-radius:16px;max-width:400px;box-shadow:0 10px 30px rgba(0,0,0,0.5)}
+  h1{color:#38bdf8;margin:0 0 10px}
+  p{color:#cbd5e1;line-height:1.5}
+  .btn{background:#38bdf8;color:#0f172a;border:0;padding:14px 20px;border-radius:8px;font-weight:bold;font-size:16px;cursor:pointer;width:100%;margin-top:15px}
+  .small{font-size:12px;color:#94a3b8;margin-top:15px}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>GSO NOTÍCIAS</h1>
+  <p>Receba as principais notícias direto no seu celular!</p>
+  <p>Clique abaixo e depois em <b>Permitir</b>.</p>
+  <button class="btn" onclick="window.OneSignalDeferred.push(async function(OneSignal){ await OneSignal.Slidedown.promptPush(); });">🔔 ATIVAR NOTIFICAÇÕES</button>
+  <p class="small">Você receberá notícias do nosso blog oficial:<br>gabrielsantosooficial.blogspot.com</p>
+</div>
+</body>
+</html>
